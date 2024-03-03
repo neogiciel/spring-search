@@ -22,19 +22,21 @@
   </div>
   <div id='center' class="main center">
     <div class="p">
-     <div class="txt">Test Search : Version 1.0</div>
+     <div class="txt">Ajouter un Service</div>
       <center>
-        <a href="/listepersonne" class="lien">>> liste Personne</a><br>
-        <a href="/listepersonnenocache" class="lien">>> liste Personne No Cache</a><br>
-        <a href="/listepersonneredis" class="lien">>> liste Personne Redis</a><br>
-        <a href="/addpersonne" class="lien">>> Ajouter une Personne</a><br>
-        <a href="/listeservice" class="lien">>> liste Service</a><br>
-        <a href="/addservice" class="lien">>> Ajouter une Service</a><br>
-        <a href="/listeservicepersonne" class="lien">>> liste ServicePersonne</a><br>
+        <form action="/addpersonneb" method="POST">
+          Prenom:<br>
+          <input name="prenom" value="" type="text"> <br>
+          Nom:<br>
+          <input name="nom" value="" type="text"> <br>
+          Age:<br>
+          <input name="age" value="" type="text"> <br>
+          <input type="submit" value="Ajouter"><br>
+        </form>
+    
       </center>
     </div>
 </div>
 </body>
 </html>
-
 

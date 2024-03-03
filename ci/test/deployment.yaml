@@ -1,0 +1,43 @@
+
+kubectl port-forward --address 0.0.0.0 service/spring-search-k8s-svc 8082:8082
+
+
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-python
+  labels:
+    app: python
+spec:
+  containers:
+  - name: app
+    image: python:latest
+    command: ["python", "-m", "http.server", "31000"]
+    ports:
+      - containerPort: 31000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/exoscale-loadbalancer-name: python
+    service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-interval: 10s
+    service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-mode: http
+    service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-retries: '1'
+    service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-timeout: 3s
+    service.beta.kubernetes.io/exoscale-loadbalancer-service-healthcheck-uri: /
+    service.beta.kubernetes.io/exoscale-loadbalancer-service-strategy: source-hash
+  name: python-lb
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  ports:
+    - name: http
+      port: 80
+      nodePort: 31001
+      protocol: TCP
+      targetPort: 31000
+  selector:
+    app: python

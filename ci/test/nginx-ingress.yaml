@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: nginx-ingress
+  namespace: default
+spec:
+  rules:
+  - host: dev6.neogiciel.com
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: spring-search-k8s-svc
+            servicePort: 8082
