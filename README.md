@@ -20,7 +20,7 @@ Lancement de l'application Spring-boot<br>
 $ mvn  clean
 $ mvn spring-boot:run
 ```
-Le service est accessible sur http://localhost:8088
+Le service est accessible sur http://localhost:8080
 
 ## FAQs
 ***
